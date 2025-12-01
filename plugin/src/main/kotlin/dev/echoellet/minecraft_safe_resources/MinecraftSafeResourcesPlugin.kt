@@ -4,10 +4,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 @Suppress("unused")
-class MinecraftSafeResourcesPlugin: Plugin<Project> {
+class MinecraftSafeResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        project.tasks.register("greeting") {
-
-        }
     }
 }

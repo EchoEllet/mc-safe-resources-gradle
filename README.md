@@ -88,7 +88,7 @@ import dev.echoellet.minecraft_safe_resources.OutputLanguage
 
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version("0.0.1")
+    id("dev.echoellet.minecraft-safe-resources") version ("0.0.1")
 }
 
 def modAssetsDirPath = "src/main/resources/assets/$mod_id"
@@ -159,4 +159,4 @@ Component.translatable(LangKeys.ITEM_EXAMPLE);
 
 > [!TIP]
 > When updating any resource file, run the game (`./gradlew runClient`) or any Gradle task that compiles the code,
-> which causes this plugin to update the generated objects, so you can reference the updated objects.
+> which causes this plugin to update the generated object, so you can reference the updated keys.
