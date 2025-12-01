@@ -77,7 +77,7 @@ abstract class GenerateJsonKeysTask : DefaultTask() {
 
         generateOutputClassFile(outputFile, keys, cachedOutputClassDescription, cachedOutputLang)
 
-        println("Generated `$outputClassName` from resource asset: ${cachedInputResourceFile.asFile.path}")
+        println("Generated `$cachedOutputClassName` from resource asset: ${cachedInputResourceFile.asFile.path}")
     }
 
     private fun getGeneratedConstantKeyLine(
