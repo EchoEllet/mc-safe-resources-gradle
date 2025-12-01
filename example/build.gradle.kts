@@ -3,8 +3,8 @@ import dev.echoellet.minecraft_safe_resources.OutputLanguage
 
 plugins {
     java
-    kotlin("jvm") version("2.2.21")
-    id("dev.echoellet.minecraft-safe-resources") version ("1.0.0")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.minecraftSafeResources)
 }
 
 repositories {

@@ -23,7 +23,7 @@ import dev.echoellet.minecraft_safe_resources.OutputLanguage
 
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version ("1.0.0")
+    id("dev.echoellet.minecraft-safe-resources") version ("0.0.1")
 }
 
 val modAssetsDirPath = "src/main/resources/assets/$modId"
@@ -58,7 +58,7 @@ import dev.echoellet.minecraft_safe_resources.OutputLanguage
 
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version ("1.0.0")
+    id("dev.echoellet.minecraft-safe-resources") version ("0.0.1")
 }
 
 def modAssetsDirPath = "src/main/resources/assets/$mod_id"
