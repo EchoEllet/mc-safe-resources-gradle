@@ -6,7 +6,7 @@ include(
 
 pluginManagement {
     repositories {
-        maven { url = uri("./plugin/build/local-repo") }
+        maven { url = uri("https://echoellet.github.io/maven-repo/") }
         gradlePluginPortal()
     }
 }

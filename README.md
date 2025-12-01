@@ -8,14 +8,29 @@ and fully automated.
 
 > [!TIP]
 > This is a minimal guide for setting this Gradle plugin in your mod's Gradle scripts.
-For details on why it's useful, refer to the [Motivation](#motivation) section.
+> For details on why it's useful, refer to the [Motivation](#motivation) section.
 
 The syntax is slightly different depending on the Gradle DSL language.
 Most mods use Groovy (`build.gradle`).
 
-### Kotlin DSL (`build.gradle.kts`)
+### Kotlin DSL
 
-<details><summary>Tap to show/hide</summary>
+<details><summary>settings.gradle.kts</summary>
+
+```kotlin
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        // Temporary: required because this plugin is not yet published on the Gradle Plugin Portal
+        //  https://github.com/EchoEllet/minecraft-safe-resources-gradle/issues/1
+        maven { url = uri("https://echoellet.github.io/maven-repo/") }
+    }
+}
+```
+
+</details>
+
+<details><summary>build.gradle.kts</summary>
 
 ```kotlin
 import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
@@ -48,9 +63,24 @@ tasks.compileJava.get().dependsOn(generateLangKeys)
 
 </details>
 
-### Groovy DSL (`build.gradle`)
+### Groovy DSL
 
-<details><summary>Tap to show/hide</summary>
+<details><summary>settings.gradle</summary>
+
+```kotlin
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        // Temporary: required because this plugin is not yet published on the Gradle Plugin Portal
+        //  https://github.com/EchoEllet/minecraft-safe-resources-gradle/issues/1
+        maven { url = uri("https://echoellet.github.io/maven-repo/") }
+    }
+}
+```
+
+</details>
+
+<details><summary>build.gradle</summary>
 
 ```groovy
 import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
@@ -58,7 +88,7 @@ import dev.echoellet.minecraft_safe_resources.OutputLanguage
 
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version ("0.0.1")
+    id("dev.echoellet.minecraft-safe-resources") version("0.0.1")
 }
 
 def modAssetsDirPath = "src/main/resources/assets/$mod_id"
@@ -129,4 +159,4 @@ Component.translatable(LangKeys.ITEM_EXAMPLE);
 
 > [!TIP]
 > When updating any resource file, run the game (`./gradlew runClient`) or any Gradle task that compiles the code,
-which causes this plugin to update the generated objects, so you can reference the updated objects.
+> which causes this plugin to update the generated objects, so you can reference the updated objects.
