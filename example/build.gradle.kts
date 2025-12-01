@@ -12,10 +12,6 @@ repositories {
     mavenLocal()
 }
 
-dependencies {
-    implementation(project(":plugin"))
-}
-
 group = "org.example"
 val modId = "my_mod_id"
 

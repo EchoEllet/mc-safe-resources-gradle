@@ -1,6 +1,6 @@
 rootProject.name = "minecraft-safe-resources"
 include(
-    "plugin",
+    "minecraft-safe-resources",
     "example",
 )
 
