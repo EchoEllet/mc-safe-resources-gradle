@@ -3,9 +3,11 @@ minecraftSafeResources = "0.0.1"
 gradlePluginPublish = "2.0.0"
 gson = "2.13.2"
 kotlin = "2.2.21"
+jetbrainsAnnotations = "26.0.2-1"
 
 [libraries]
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+jetbrainsAnnotations = { module = "org.jetbrains:annotations", version.ref = "jetbrainsAnnotations" }
 
 [plugins]
 gradlePluginPublish = { id = "com.gradle.plugin-publish", version.ref = "gradlePluginPublish" }

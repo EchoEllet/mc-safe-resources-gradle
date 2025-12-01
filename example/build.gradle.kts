@@ -12,6 +12,10 @@ repositories {
     mavenLocal()
 }
 
+dependencies {
+    compileOnly(libs.jetbrainsAnnotations)
+}
+
 group = "org.example"
 val modId = "my_mod_id"
 
