@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":plugin:main" external.linked.project.path="$MODULE_DIR$/../../../plugin" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="dev.echoellet" external.system.module.type="sourceSet" external.system.module.version="0.0.1" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":minecraft-safe-resources:main" external.linked.project.path="$MODULE_DIR$/../../../minecraft-safe-resources" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="dev.echoellet" external.system.module.type="sourceSet" external.system.module.version="0.0.1" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet external-system-id="GRADLE" type="kotlin-language" name="Kotlin">
-      <configuration version="5" platform="JVM 21" allPlatforms="JVM [21]" useProjectSettings="false" pureKotlinSourceFolders="$MODULE_DIR$/../../../plugin/src/test/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/plugin/src/main/kotlin">
+      <configuration version="5" platform="JVM 21" allPlatforms="JVM [21]" useProjectSettings="false" pureKotlinSourceFolders="$MODULE_DIR$/../../../minecraft-safe-resources/src/test/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/minecraft-safe-resources/src/main/kotlin">
         <compilerSettings>
           <option name="additionalArguments" value="-java-parameters -Xjspecify-annotations=strict -Xjsr305=strict -jvm-default no-compatibility -Xsam-conversions=class -Xuse-fir-lt=false" />
         </compilerSettings>
@@ -13,9 +13,9 @@
             <flagArg name="noStdlib" arg="true" />
           </flagArguments>
           <stringArguments>
-            <stringArg name="destination" arg="$MODULE_DIR$/../../../plugin/build/classes/kotlin/main" />
+            <stringArg name="destination" arg="$MODULE_DIR$/../../../minecraft-safe-resources/build/classes/kotlin/main" />
             <stringArg name="jvmTarget" arg="21" />
-            <stringArg name="moduleName" arg="plugin" />
+            <stringArg name="moduleName" arg="minecraft-safe-resources" />
             <stringArg name="apiVersion" arg="2.2" />
             <stringArg name="languageVersion" arg="2.2" />
           </stringArguments>
@@ -43,11 +43,10 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <output url="file://$MODULE_DIR$/../../../plugin/build/classes/kotlin/main" />
+    <output url="file://$MODULE_DIR$/../../../minecraft-safe-resources/build/classes/kotlin/main" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../plugin/src/main">
-      <sourceFolder url="file://$MODULE_DIR$/../../../plugin/src/main/kotlin" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../plugin/src/main/resources" type="java-resource" />
+    <content url="file://$MODULE_DIR$/../../../minecraft-safe-resources/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../../minecraft-safe-resources/src/main/kotlin" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
