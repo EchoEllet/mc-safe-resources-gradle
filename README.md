@@ -33,32 +33,17 @@ pluginManagement {
 <details><summary>build.gradle.kts</summary>
 
 ```kotlin
-import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
-import dev.echoellet.minecraft_safe_resources.OutputLanguage
-
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version ("0.0.1")
+    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
 }
 
-val modAssetsDirPath = "src/main/resources/assets/$modId"
-
-val generateLangKeys = tasks.register<GenerateJsonKeysTask>("generateLangKeys") {
-    val enUsResourcePath = "$modAssetsDirPath/lang/en_us.json"
-
-    inputResourceFile.set(project.file(enUsResourcePath))
-    outputClassName.set("LangKeys")
-    outputLanguage.set(OutputLanguage.JAVA)
-    outputClassDescription.set(buildString {
-        append("A generated object that represents the keys in `$enUsResourcePath` resource file,"); appendLine()
-        append("to avoid hardcoding the keys across the codebase, which is error-prone, inefficient, and less type-safe.")
-    })
-    outputPackage.set("$modGroupId.generated")
-    keyNamespaceToStrip.set(modId)
+minecraftSafeResources {
+    modId.set(mod_id)
 }
 
-java.sourceSets.main.get().java.srcDir(generateLangKeys.map { it.outputs.files.singleFile })
-tasks.compileJava.get().dependsOn(generateLangKeys)
+java.sourceSets.main.get().java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
+tasks.compileJava.get().dependsOn(tasks.generateLangKeys)
 ```
 
 </details>
@@ -83,42 +68,42 @@ pluginManagement {
 <details><summary>build.gradle</summary>
 
 ```groovy
-import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
-import dev.echoellet.minecraft_safe_resources.OutputLanguage
-
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version ("0.0.1")
+    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
 }
 
-def modAssetsDirPath = "src/main/resources/assets/$mod_id"
-
-def generateLangKeys = tasks.register('generateLangKeys', GenerateJsonKeysTask) {
-    def enUsResourcePath = "$modAssetsDirPath/lang/en_us.json"
-
-    inputResourceFile.set(project.file(enUsResourcePath))
-    outputClassName.set("LangKeys")
-    outputLanguage.set(OutputLanguage.JAVA)
-    outputClassDescription.set("""
-        A generated object that represents the keys in `$enUsResourcePath` resource file,
-        to avoid hardcoding the keys across the codebase, which is error-prone, inefficient, and less type-safe.
-    """.stripIndent().trim())
-    outputPackage.set("${mod_group_id}.generated")
-    keyNamespaceToStrip.set(mod_id)
+minecraftSafeResources {
+    modId.set(mod_id)
 }
 
-java.sourceSets.main.java.srcDir(generateLangKeys.map { it.outputs.files.singleFile })
-tasks.compileJava.dependsOn(generateLangKeys)
+java.sourceSets.main.java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
+tasks.compileJava.dependsOn(tasks.generateLangKeys)
 ```
 
 </details>
 
 > [!NOTE]
-> **Kotlin users:** To generate a Kotlin object instead of Java:
+> The output package may be specified as required (**default** is `"${project.group}.generated"`):
 >
 > ```kotlin
-> outputLanguage.set(OutputLanguage.KOTLIN)
+> minecraftSafeResources {
+>     outputPackage.set("org.example.mod_id.generated")
+> }
 > ```
+
+### Kotlin Language Support
+
+**Kotlin users:** To generate a Kotlin object instead of Java:
+
+```kotlin
+kotlin.sourceSets.main.get().kotlin.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
+tasks.compileKotlin.get().dependsOn(tasks.generateLangKeys)
+
+minecraftSafeResources {
+    outputLanguage.set(KOTLIN)
+}
+```
 
 ## Motivation
 
@@ -160,3 +145,86 @@ Component.translatable(LangKeys.ITEM_EXAMPLE);
 > [!TIP]
 > When updating any resource file, run the game (`./gradlew runClient`) or any Gradle task that compiles the code,
 > which causes this plugin to update the generated object, so you can reference the updated keys.
+
+## Advanced Setup
+
+Follow this guide for more flexibility on how the objects are generated or to generate more objects
+from custom JSON files.
+
+### Kotlin DSL
+
+<details><summary>build.gradle.kts</summary>
+
+```kotlin
+import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
+import dev.echoellet.minecraft_safe_resources.OutputLanguage
+
+plugins {
+    // ...
+    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
+}
+
+val modAssetsDirPath = "src/main/resources/assets/$modId"
+
+val generateLangKeys = tasks.register<GenerateJsonKeysTask>("generateLangKeys") {
+    val enUsResourcePath = "$modAssetsDirPath/lang/en_us.json"
+
+    inputResourceFile.set(project.file(enUsResourcePath))
+    outputClassName.set("LangKeys")
+    outputLanguage.set(OutputLanguage.JAVA)
+    outputClassDescription.set(buildString {
+        append("A generated object that represents the keys in `$enUsResourcePath` resource file,"); appendLine()
+        append("to avoid hardcoding the keys across the codebase, which is error-prone, inefficient, and less type-safe.")
+    })
+    outputPackage.set("$modGroupId.generated")
+    keyNamespaceToStrip.set(modId)
+    useJetBrainsAnnotations.set(true)
+}
+
+java.sourceSets.main.get().java.srcDir(generateLangKeys.map { it.outputs.files.singleFile })
+tasks.compileJava.get().dependsOn(generateLangKeys)
+```
+
+</details>
+
+### Groovy DSL
+
+<details><summary>build.gradle</summary>
+
+```groovy
+import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
+import dev.echoellet.minecraft_safe_resources.OutputLanguage
+
+plugins {
+    // ...
+    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
+}
+
+def modAssetsDirPath = "src/main/resources/assets/$mod_id"
+
+def generateLangKeys = tasks.register('generateLangKeys', GenerateJsonKeysTask) {
+    def enUsResourcePath = "$modAssetsDirPath/lang/en_us.json"
+
+    inputResourceFile.set(project.file(enUsResourcePath))
+    outputClassName.set("LangKeys")
+    outputLanguage.set(OutputLanguage.JAVA)
+    outputClassDescription.set("""
+        A generated object that represents the keys in `$enUsResourcePath` resource file,
+        to avoid hardcoding the keys across the codebase, which is error-prone, inefficient, and less type-safe.
+    """.stripIndent().trim())
+    outputPackage.set("${mod_group_id}.generated")
+    keyNamespaceToStrip.set(mod_id)
+    useJetBrainsAnnotations.set(true)
+}
+
+java.sourceSets.main.java.srcDir(generateLangKeys.map { it.outputs.files.singleFile })
+tasks.compileJava.dependsOn(generateLangKeys)
+```
+
+</details>
+
+## ⚠️ Disclaimer
+
+> [!WARNING]
+> **Minecraft Safe Resources is NOT AN OFFICIAL MINECRAFT PRODUCT.  
+It is NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**

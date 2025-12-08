@@ -1,5 +1,5 @@
 [versions]
-minecraftSafeResources = "0.0.1"
+minecraftSafeResources = "0.0.2"
 gradlePluginPublish = "2.0.0"
 gson = "2.13.2"
 kotlin = "2.2.21"

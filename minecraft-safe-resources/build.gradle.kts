@@ -57,10 +57,10 @@ publishing {
 fun replaceVersionInFile(path: String) {
     val file = rootProject.file(path)
     val content = file.readText()
-    val versionPattern = Regex("""id\("$pluginId"\)\s+version\s*\(".*"\)""")
+    val versionPattern = Regex("""id\("$pluginId"\)\s+version\s*\(\s*".*"\s*\)""")
 
     val newContent = versionPattern.replace(content) {
-        """id("$pluginId") version ("${project.version}")"""
+        """id("$pluginId") version("${project.version}")"""
     }
 
     if (content != newContent) {
