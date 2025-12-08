@@ -43,7 +43,7 @@ plugins {
 }
 
 mcSafeResources {
-    namespace.set(mod_id)
+    namespace.set(modId)
 }
 
 java.sourceSets.main.get().java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
@@ -81,8 +81,8 @@ mcSafeResources {
   namespace.set(mod_id)
 }
 
-java.sourceSets.main.java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
-tasks.compileJava.dependsOn(tasks.generateLangKeys)
+sourceSets.main.java.srcDir tasks.generateLangKeys.outputs.files.singleFile
+tasks.compileJava.dependsOn tasks.generateLangKeys
 ```
 
 </details>
