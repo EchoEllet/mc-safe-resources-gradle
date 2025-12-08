@@ -1,5 +1,5 @@
 [versions]
-minecraftSafeResources = "0.0.2"
+mcSafeResources = "0.0.1"
 gradlePluginPublish = "2.0.0"
 gson = "2.13.2"
 kotlin = "2.2.21"
@@ -12,4 +12,4 @@ jetbrainsAnnotations = { module = "org.jetbrains:annotations", version.ref = "je
 [plugins]
 gradlePluginPublish = { id = "com.gradle.plugin-publish", version.ref = "gradlePluginPublish" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-minecraftSafeResources = { id = "dev.echoellet.minecraft-safe-resources", version.ref = "minecraftSafeResources" }
+mcSafeResources = { id = "dev.echoellet.mc-safe-resources", version.ref = "mcSafeResources" }

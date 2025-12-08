@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "dev.echoellet"
-version = libs.versions.minecraftSafeResources.get()
+version = libs.versions.mcSafeResources.get()
 description =
     "A Gradle plugin to generate Java/Kotlin object constants to reference Minecraft resources or assets, such as en_us.json in code in a type-safe way without any hardcoding"
 
@@ -20,20 +20,20 @@ dependencies {
     implementation(libs.gson)
 }
 
-val pluginId = "dev.echoellet.minecraft-safe-resources"
+val pluginId = "dev.echoellet.mc-safe-resources"
 
 gradlePlugin {
-    val gitHubRepo = "https://github.com/EchoEllet/minecraft-safe-resources-gradle"
+    val gitHubRepo = "https://github.com/EchoEllet/mc-safe-resources-gradle"
     website = gitHubRepo
     vcsUrl = gitHubRepo
 
-    plugins.create("minecraftSafeResourcesPlugin") {
+    plugins.create("mcSafeResourcesPlugin") {
         id = pluginId
-        implementationClass = "dev.echoellet.minecraft_safe_resources.MinecraftSafeResourcesPlugin"
-        displayName = "Minecraft Safe Resources"
+        implementationClass = "dev.echoellet.mc_safe_resources.McSafeResourcesPlugin"
+        displayName = "MC Safe Resources"
         description = project.description
         version = project.version
-        tags = listOf("minecraft", "resources", "generator", "json")
+        tags = listOf("minecraft", "mod", "resources", "generator", "json", "type-safe")
     }
 }
 

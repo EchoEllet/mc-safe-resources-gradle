@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minecraft-safe-resources.iml" filepath="$PROJECT_DIR$/.idea/modules/minecraft-safe-resources.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example/minecraft-safe-resources.example.iml" filepath="$PROJECT_DIR$/.idea/modules/example/minecraft-safe-resources.example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example/minecraft-safe-resources.example.main.iml" filepath="$PROJECT_DIR$/.idea/modules/example/minecraft-safe-resources.example.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example/minecraft-safe-resources.example.test.iml" filepath="$PROJECT_DIR$/.idea/modules/example/minecraft-safe-resources.example.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/minecraft-safe-resources.minecraft-safe-resources.iml" filepath="$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/minecraft-safe-resources.minecraft-safe-resources.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/minecraft-safe-resources.minecraft-safe-resources.main.iml" filepath="$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/minecraft-safe-resources.minecraft-safe-resources.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/minecraft-safe-resources.minecraft-safe-resources.test.iml" filepath="$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/minecraft-safe-resources.minecraft-safe-resources.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc-safe-resources.iml" filepath="$PROJECT_DIR$/.idea/modules/mc-safe-resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example/mc-safe-resources.example.iml" filepath="$PROJECT_DIR$/.idea/modules/example/mc-safe-resources.example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example/mc-safe-resources.example.main.iml" filepath="$PROJECT_DIR$/.idea/modules/example/mc-safe-resources.example.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example/mc-safe-resources.example.test.iml" filepath="$PROJECT_DIR$/.idea/modules/example/mc-safe-resources.example.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/mc-safe-resources.mc-safe-resources.iml" filepath="$PROJECT_DIR$/.idea/modules/minecraft-safe-resources/mc-safe-resources.mc-safe-resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc-safe-resources/mc-safe-resources.mc-safe-resources.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mc-safe-resources/mc-safe-resources.mc-safe-resources.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc-safe-resources/mc-safe-resources.mc-safe-resources.test.iml" filepath="$PROJECT_DIR$/.idea/modules/mc-safe-resources/mc-safe-resources.mc-safe-resources.test.iml" />
     </modules>
   </component>
 </project>

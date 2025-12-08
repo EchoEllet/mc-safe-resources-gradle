@@ -1,10 +1,10 @@
-package dev.echoellet.minecraft_safe_resources
+package dev.echoellet.mc_safe_resources
 
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import javax.inject.Inject
 
-abstract class MinecraftSafeResourcesExtension @Inject constructor(objects: ObjectFactory) {
+abstract class McSafeResourcesExtension @Inject constructor(objects: ObjectFactory) {
     // Removes the need for "OutputLanguage" import
 
     @Suppress("PropertyName")

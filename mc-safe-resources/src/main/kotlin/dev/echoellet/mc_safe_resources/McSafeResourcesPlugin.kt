@@ -1,15 +1,15 @@
-package dev.echoellet.minecraft_safe_resources
+package dev.echoellet.mc_safe_resources
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.register
 
 @Suppress("unused")
-abstract class MinecraftSafeResourcesPlugin : Plugin<Project> {
+abstract class McSafeResourcesPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         val extension = project.extensions.create(
-            "minecraftSafeResources",
-            MinecraftSafeResourcesExtension::class.java,
+            "mcSafeResources",
+            McSafeResourcesExtension::class.java,
         )
 
         val modAssetsDirPath = extension.modId.map { modId ->
@@ -18,7 +18,7 @@ abstract class MinecraftSafeResourcesPlugin : Plugin<Project> {
 
         // TODO: Provide generateModAssetPaths https://github.com/EchoEllet/dragonfist-legacy/blob/e335f3714da61c435d57e7ddd1d80c5c45836d04/build.gradle.kts#L207-L264
 
-        for (task in MinecraftSafeResourcesGenerateTask.entries) {
+        for (task in McSafeResourcesGenerateTask.entries) {
             project.tasks.register<GenerateJsonKeysTask>("generate${task.outputClassName}") {
 
                 val resourcePathProvider = modAssetsDirPath.map { dir ->

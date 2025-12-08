@@ -4,6 +4,10 @@ A simple Gradle plugin to generate Java or Kotlin objects that can be used in th
 to reference mod assets like `en_us.json` or `sounds.json` in a type-safe way with no hardcoding,
 and fully automated.
 
+**This plugin is not affiliated
+with [Mojang AB](https://mojang.com/), [Microsoft Corporation](https://www.microsoft.com/), or any of their
+subsidiaries.**
+
 ## Getting Started
 
 > [!TIP]
@@ -22,7 +26,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         // Temporary: required because this plugin is not yet published on the Gradle Plugin Portal
-        //  https://github.com/EchoEllet/minecraft-safe-resources-gradle/issues/1
+        //  https://github.com/EchoEllet/mc-safe-resources-gradle/issues/1
         maven { url = uri("https://echoellet.github.io/maven-repo/") }
     }
 }
@@ -35,10 +39,10 @@ pluginManagement {
 ```kotlin
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
+    id("dev.echoellet.mc-safe-resources") version("0.0.1")
 }
 
-minecraftSafeResources {
+mcSafeResources {
     modId.set(mod_id)
 }
 
@@ -57,7 +61,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         // Temporary: required because this plugin is not yet published on the Gradle Plugin Portal
-        //  https://github.com/EchoEllet/minecraft-safe-resources-gradle/issues/1
+        //  https://github.com/EchoEllet/mc-safe-resources-gradle/issues/1
         maven { url = uri("https://echoellet.github.io/maven-repo/") }
     }
 }
@@ -70,10 +74,10 @@ pluginManagement {
 ```groovy
 plugins {
     // ...
-    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
+    id("dev.echoellet.mc-safe-resources") version("0.0.1")
 }
 
-minecraftSafeResources {
+mcSafeResources {
     modId.set(mod_id)
 }
 
@@ -87,7 +91,7 @@ tasks.compileJava.dependsOn(tasks.generateLangKeys)
 > The output package may be specified as required (**default** is `"${project.group}.generated"`):
 >
 > ```kotlin
-> minecraftSafeResources {
+> mcSafeResources {
 >     outputPackage.set("org.example.mod_id.generated")
 > }
 > ```
@@ -100,7 +104,7 @@ tasks.compileJava.dependsOn(tasks.generateLangKeys)
 kotlin.sourceSets.main.get().kotlin.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
 tasks.compileKotlin.get().dependsOn(tasks.generateLangKeys)
 
-minecraftSafeResources {
+mcSafeResources {
     outputLanguage.set(KOTLIN)
 }
 ```
@@ -140,11 +144,21 @@ Component.translatable(LangKeys.ITEM_EXAMPLE);
 
 - The mod ID (e.g., `example_mod`) is automatically removed from the constant field name for readability (
   `item.example_mod.example` -> `ITEM_EXAMPLE`).
+    - The same applies for `${modId}` or `${mod_id}`
 - This generated file is not checked into version control by design, and won't affect the source code file tree.
 
 > [!TIP]
 > When updating any resource file, run the game (`./gradlew runClient`) or any Gradle task that compiles the code,
 > which causes this plugin to update the generated object, so you can reference the updated keys.
+
+## Features
+
+- Uses the latest Gradle best practices and is compatible with **Gradle 9**
+- Supports the [Gradle configuration cache](https://docs.gradle.org/current/userguide/configuration_cache.html) to speed
+  up repeated Gradle task runs
+- Works independently of any mod loader, toolchain, plugin, or Minecraft Java dependency
+- Supports the **Kotlin programming language**
+- Opinionated and simple with minimal configuration, yet flexible enough when needed
 
 ## Advanced Setup
 
@@ -156,13 +170,8 @@ from custom JSON files.
 <details><summary>build.gradle.kts</summary>
 
 ```kotlin
-import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
-import dev.echoellet.minecraft_safe_resources.OutputLanguage
-
-plugins {
-    // ...
-    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
-}
+import dev.echoellet.mc_safe_resources.GenerateJsonKeysTask
+import dev.echoellet.mc_safe_resources.OutputLanguage
 
 val modAssetsDirPath = "src/main/resources/assets/$modId"
 
@@ -192,13 +201,8 @@ tasks.compileJava.get().dependsOn(generateLangKeys)
 <details><summary>build.gradle</summary>
 
 ```groovy
-import dev.echoellet.minecraft_safe_resources.GenerateJsonKeysTask
-import dev.echoellet.minecraft_safe_resources.OutputLanguage
-
-plugins {
-    // ...
-    id("dev.echoellet.minecraft-safe-resources") version("0.0.2")
-}
+import dev.echoellet.mc_safe_resources.GenerateJsonKeysTask
+import dev.echoellet.mc_safe_resources.OutputLanguage
 
 def modAssetsDirPath = "src/main/resources/assets/$mod_id"
 
@@ -224,6 +228,9 @@ tasks.compileJava.dependsOn(generateLangKeys)
 </details>
 
 ## ⚠️ Disclaimer
+
+To comply with the [Minecraft Essential guidelines](https://www.minecraft.net/en-us/usage-guidelines),
+the following disclaimer is included:
 
 > [!WARNING]
 > **Minecraft Safe Resources is NOT AN OFFICIAL MINECRAFT PRODUCT.  

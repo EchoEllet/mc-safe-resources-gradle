@@ -1,15 +1,15 @@
-rootProject.name = "minecraft-safe-resources"
+rootProject.name = "mc-safe-resources"
 include(
-    "minecraft-safe-resources",
+    "mc-safe-resources",
     "example",
 )
 
 pluginManagement {
     repositories {
         // TODO: Temporary, replace with Gradle Plugin Portal.
-        //  https://github.com/EchoEllet/minecraft-safe-resources-gradle/issues/1
+        //  https://github.com/EchoEllet/mc-safe-resources-gradle/issues/1
 //        maven { url = uri("https://echoellet.github.io/maven-repo/") }
-        maven { url = uri("./minecraft-safe-resources/build/local-repo") }
+        maven { url = uri("./mc-safe-resources/build/local-repo") }
         gradlePluginPortal()
     }
 }

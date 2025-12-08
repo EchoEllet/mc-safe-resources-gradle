@@ -1,4 +1,4 @@
-package dev.echoellet.minecraft_safe_resources
+package dev.echoellet.mc_safe_resources
 
 import com.google.gson.JsonParser
 import org.gradle.api.DefaultTask

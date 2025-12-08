@@ -10,7 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/example" />
-            <option value="$PROJECT_DIR$/minecraft-safe-resources" />
+            <option value="$PROJECT_DIR$/mc-safe-resources" />
           </set>
         </option>
       </GradleProjectSettings>
