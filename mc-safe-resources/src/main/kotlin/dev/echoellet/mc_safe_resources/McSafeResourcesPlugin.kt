@@ -29,7 +29,7 @@ abstract class McSafeResourcesPlugin : Plugin<Project> {
                 outputClassName.set(task.outputClassName)
                 outputLanguage.set(extension.outputLanguage)
                 outputClassDescription.set(resourcePathProvider.map { buildGeneratedObjectDescription(it) })
-                outputPackage.set(extension.outputPackage.orElse(getDefaultOutputPackage(project)))
+                outputPackage.set(extension.outputPackage.orElse(getDefaultOutputPackage(project, extension.modId.get())))
                 keyNamespaceToStrip.set(extension.modId)
                 useJetBrainsAnnotations.set(hasJetBrainsAnnotationsDependency(project))
             }
@@ -48,8 +48,8 @@ abstract class McSafeResourcesPlugin : Plugin<Project> {
         }
     }
 
-    private fun getDefaultOutputPackage(project: Project): String {
-        return "${project.group}.generated"
+    private fun getDefaultOutputPackage(project: Project, modId: String): String {
+        return "${project.group}.${modId}.generated"
     }
 
     private fun buildGeneratedObjectDescription(resourcePath: String): String {

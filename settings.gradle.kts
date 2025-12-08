@@ -1,8 +1,4 @@
 rootProject.name = "mc-safe-resources"
-include(
-    "mc-safe-resources",
-    "example",
-)
 
 pluginManagement {
     repositories {
@@ -13,3 +9,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+include(
+    "mc-safe-resources",
+    "example",
+)

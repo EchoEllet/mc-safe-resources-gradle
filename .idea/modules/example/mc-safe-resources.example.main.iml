@@ -2,7 +2,7 @@
 <module external.linked.project.id=":example:main" external.linked.project.path="$MODULE_DIR$/../../../example" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="org.example" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet external-system-id="GRADLE" type="kotlin-language" name="Kotlin">
-      <configuration version="5" platform="JVM 21" allPlatforms="JVM [21]" useProjectSettings="false" pureKotlinSourceFolders="$MODULE_DIR$/../../../example/src/test/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/example/src/main/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/example/build/generated/generateLangKeys/src/main/kotlin">
+      <configuration version="5" platform="JVM 21" allPlatforms="JVM [21]" useProjectSettings="false" pureKotlinSourceFolders="$MODULE_DIR$/../../../example/src/test/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/example/src/main/kotlin">
         <compilerSettings />
         <compilerArguments>
           <flagArguments>
@@ -34,10 +34,10 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <output url="file://$MODULE_DIR$/../../../example/build/classes/kotlin/main" />
+    <output url="file://$MODULE_DIR$/../../../example/build/classes/java/main" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../example/build/generated/generateLangKeys/src/main/kotlin">
-      <sourceFolder url="file://$MODULE_DIR$/../../../example/build/generated/generateLangKeys/src/main/kotlin" isTestSource="false" />
+    <content url="file://$MODULE_DIR$/../../../example/build/generated/generateLangKeys/src/main/java">
+      <sourceFolder url="file://$MODULE_DIR$/../../../example/build/generated/generateLangKeys/src/main/java" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../../example/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../example/src/main/java" isTestSource="false" />
