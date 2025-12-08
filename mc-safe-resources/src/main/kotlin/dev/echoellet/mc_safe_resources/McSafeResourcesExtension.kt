@@ -13,7 +13,7 @@ abstract class McSafeResourcesExtension @Inject constructor(objects: ObjectFacto
     @Suppress("PropertyName")
     val JAVA = OutputLanguage.JAVA
 
-    val modId: Property<String> = objects
+    val namespace: Property<String> = objects
         .property(String::class.java)
 
     val outputLanguage: Property<OutputLanguage> = objects

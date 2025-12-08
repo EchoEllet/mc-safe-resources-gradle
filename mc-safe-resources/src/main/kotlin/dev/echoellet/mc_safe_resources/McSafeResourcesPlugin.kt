@@ -12,7 +12,7 @@ abstract class McSafeResourcesPlugin : Plugin<Project> {
             McSafeResourcesExtension::class.java,
         )
 
-        val modAssetsDirPath = extension.modId.map { modId ->
+        val modAssetsDirPath = extension.namespace.map { modId ->
             "src/main/resources/assets/$modId"
         }
 
@@ -29,8 +29,8 @@ abstract class McSafeResourcesPlugin : Plugin<Project> {
                 outputClassName.set(task.outputClassName)
                 outputLanguage.set(extension.outputLanguage)
                 outputClassDescription.set(resourcePathProvider.map { buildGeneratedObjectDescription(it) })
-                outputPackage.set(extension.outputPackage.orElse(getDefaultOutputPackage(project, extension.modId.get())))
-                keyNamespaceToStrip.set(extension.modId)
+                outputPackage.set(extension.outputPackage.orElse(getDefaultOutputPackage(project, extension.namespace.get())))
+                keyNamespaceToStrip.set(extension.namespace)
                 useJetBrainsAnnotations.set(hasJetBrainsAnnotationsDependency(project))
             }
         }

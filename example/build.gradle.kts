@@ -19,6 +19,6 @@ java.sourceSets.main.get().java.srcDir(tasks.generateLangKeys.map { it.outputs.f
 tasks.compileJava.get().dependsOn(tasks.generateLangKeys)
 
 mcSafeResources {
-    modId.set(exampleModId)
+    namespace.set(exampleModId)
     outputLanguage.set(JAVA)
 }

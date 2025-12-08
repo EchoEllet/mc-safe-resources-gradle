@@ -43,7 +43,7 @@ plugins {
 }
 
 mcSafeResources {
-    modId.set(mod_id)
+    namespace.set(mod_id)
 }
 
 java.sourceSets.main.get().java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
@@ -78,7 +78,7 @@ plugins {
 }
 
 mcSafeResources {
-    modId.set(mod_id)
+  namespace.set(mod_id)
 }
 
 java.sourceSets.main.java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
@@ -185,7 +185,7 @@ val generateLangKeys = tasks.register<GenerateJsonKeysTask>("generateLangKeys") 
         append("A generated object that represents the keys in `$enUsResourcePath` resource file,"); appendLine()
         append("to avoid hardcoding the keys across the codebase, which is error-prone, inefficient, and less type-safe.")
     })
-    outputPackage.set("$modGroupId.generated")
+    outputPackage.set("${modGroupId}.${modId}.generated")
     keyNamespaceToStrip.set(modId)
     useJetBrainsAnnotations.set(true)
 }
@@ -216,7 +216,7 @@ def generateLangKeys = tasks.register('generateLangKeys', GenerateJsonKeysTask) 
         A generated object that represents the keys in `$enUsResourcePath` resource file,
         to avoid hardcoding the keys across the codebase, which is error-prone, inefficient, and less type-safe.
     """.stripIndent().trim())
-    outputPackage.set("${mod_group_id}.generated")
+    outputPackage.set("${mod_group_id}.${modId}.generated")
     keyNamespaceToStrip.set(mod_id)
     useJetBrainsAnnotations.set(true)
 }
