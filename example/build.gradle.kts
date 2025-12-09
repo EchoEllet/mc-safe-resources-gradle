@@ -15,17 +15,14 @@ dependencies {
 group = "org.example"
 val exampleModId = "my_mod_id"
 
-java.sourceSets.main {
-    java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
-    java.srcDir(tasks.generateSoundKeys.map { it.outputs.files.singleFile })
-}
+kotlin.sourceSets.main.get().kotlin.srcDirs(
+    tasks.generateLangKeys.map { it.outputs.files.singleFile },
+    tasks.generateSoundKeys.map { it.outputs.files.singleFile }
+)
 
-tasks.compileJava {
-    dependsOn(tasks.generateLangKeys)
-    dependsOn(tasks.generateSoundKeys)
-}
+tasks.compileKotlin { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 
 mcSafeResources {
     namespace.set(exampleModId)
-    outputLanguage.set(JAVA)
+    outputLanguage.set(KOTLIN)
 }

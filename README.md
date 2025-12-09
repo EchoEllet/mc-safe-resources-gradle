@@ -46,8 +46,12 @@ mcSafeResources {
     namespace.set(modId)
 }
 
-java.sourceSets.main.get().java.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
-tasks.compileJava.get().dependsOn(tasks.generateLangKeys)
+java.sourceSets.main.get().java.srcDirs(
+  tasks.generateLangKeys.map { it.outputs.files.singleFile },
+  tasks.generateSoundKeys.map { it.outputs.files.singleFile }
+)
+
+tasks.compileJava { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 ```
 
 </details>
@@ -81,8 +85,12 @@ mcSafeResources {
   namespace.set(mod_id)
 }
 
-sourceSets.main.java.srcDir tasks.generateLangKeys.outputs.files.singleFile
-tasks.compileJava.dependsOn tasks.generateLangKeys
+java.sourceSets.main.java.srcDirs(
+        tasks.generateLangKeys.outputs.files.singleFile,
+        tasks.generateSoundKeys.outputs.files.singleFile
+)
+
+tasks.compileJava.dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys)
 ```
 
 </details>
@@ -101,11 +109,16 @@ tasks.compileJava.dependsOn tasks.generateLangKeys
 **Kotlin users:** To generate a Kotlin object instead of Java:
 
 ```kotlin
-kotlin.sourceSets.main.get().kotlin.srcDir(tasks.generateLangKeys.map { it.outputs.files.singleFile })
-tasks.compileKotlin.get().dependsOn(tasks.generateLangKeys)
+kotlin.sourceSets.main.get().kotlin.srcDirs(
+  tasks.generateLangKeys.map { it.outputs.files.singleFile },
+  tasks.generateSoundKeys.map { it.outputs.files.singleFile }
+)
+
+tasks.compileKotlin { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 
 mcSafeResources {
-    outputLanguage.set(KOTLIN)
+  namespace.set(mod_id)
+  outputLanguage.set(KOTLIN)
 }
 ```
 
