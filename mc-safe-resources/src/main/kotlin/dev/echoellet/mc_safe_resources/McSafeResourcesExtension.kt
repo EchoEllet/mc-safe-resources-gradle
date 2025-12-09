@@ -22,4 +22,8 @@ abstract class McSafeResourcesExtension @Inject constructor(objects: ObjectFacto
 
     val outputPackage: Property<String> = objects
         .property(String::class.java)
+
+    val useJetBrainsAnnotations: Property<Boolean> = objects
+        .property(Boolean::class.java)
+        .convention(true)
 }

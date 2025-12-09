@@ -39,6 +39,9 @@ gradlePlugin {
 
 java {
     withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 tasks.jar {

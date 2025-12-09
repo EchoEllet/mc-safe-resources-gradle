@@ -31,20 +31,8 @@ abstract class McSafeResourcesPlugin : Plugin<Project> {
                 outputClassDescription.set(resourcePathProvider.map { buildGeneratedObjectDescription(it) })
                 outputPackage.set(extension.outputPackage.orElse(getDefaultOutputPackage(project, extension.namespace.get())))
                 keyNamespaceToStrip.set(extension.namespace)
-                useJetBrainsAnnotations.set(hasJetBrainsAnnotationsDependency(project))
+                useJetBrainsAnnotations.set(extension.useJetBrainsAnnotations)
             }
-        }
-    }
-
-    private fun hasJetBrainsAnnotationsDependency(project: Project): Boolean {
-        val userConfigs = listOf("implementation", "api", "compileOnly", "testImplementation", "testCompileOnly")
-
-        return userConfigs.any { configName ->
-            project.configurations.findByName(configName)
-                ?.allDependencies
-                ?.any { dep ->
-                    dep.group == "org.jetbrains" && dep.name == "annotations"
-                } == true
         }
     }
 
