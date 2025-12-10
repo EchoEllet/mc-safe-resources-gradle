@@ -17,22 +17,9 @@ subsidiaries.**
 The syntax is slightly different depending on the Gradle DSL language.
 Most mods use Groovy (`build.gradle`).
 
+The plugin is [available on Gradle portal](https://plugins.gradle.org/plugin/dev.echoellet.mc-safe-resources).
+
 ### Kotlin DSL
-
-<details><summary>settings.gradle.kts</summary>
-
-```kotlin
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        // Temporary: required because this plugin is not yet published on the Gradle Plugin Portal
-        //  https://github.com/EchoEllet/mc-safe-resources-gradle/issues/1
-        maven { url = uri("https://echoellet.github.io/maven-repo/") }
-    }
-}
-```
-
-</details>
 
 <details><summary>build.gradle.kts</summary>
 
@@ -57,21 +44,6 @@ tasks.compileJava { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 </details>
 
 ### Groovy DSL
-
-<details><summary>settings.gradle</summary>
-
-```kotlin
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        // Temporary: required because this plugin is not yet published on the Gradle Plugin Portal
-        //  https://github.com/EchoEllet/mc-safe-resources-gradle/issues/1
-        maven { url = uri("https://echoellet.github.io/maven-repo/") }
-    }
-}
-```
-
-</details>
 
 <details><summary>build.gradle</summary>
 

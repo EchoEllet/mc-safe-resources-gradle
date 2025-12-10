@@ -2,7 +2,7 @@
 <module external.linked.project.id=":mc-safe-resources:main" external.linked.project.path="$MODULE_DIR$/../../../mc-safe-resources" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="dev.echoellet" external.system.module.type="sourceSet" external.system.module.version="0.0.1" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet external-system-id="GRADLE" type="kotlin-language" name="Kotlin">
-      <configuration version="5" platform="JVM 21" allPlatforms="JVM [21]" useProjectSettings="false" pureKotlinSourceFolders="$MODULE_DIR$/../../../mc-safe-resources/src/main/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/mc-safe-resources/src/test/kotlin">
+      <configuration version="5" platform="JVM 17" allPlatforms="JVM [17]" useProjectSettings="false" pureKotlinSourceFolders="$MODULE_DIR$/../../../mc-safe-resources/src/main/kotlin;/Users/ellet/IdeaProjects/mc-resource-constants/mc-safe-resources/src/test/kotlin">
         <compilerSettings>
           <option name="additionalArguments" value="-java-parameters -Xjspecify-annotations=strict -Xjsr305=strict -jvm-default no-compatibility -Xsam-conversions=class -Xuse-fir-lt=false" />
         </compilerSettings>
@@ -14,7 +14,7 @@
           </flagArguments>
           <stringArguments>
             <stringArg name="destination" arg="$MODULE_DIR$/../../../mc-safe-resources/build/classes/kotlin/main" />
-            <stringArg name="jvmTarget" arg="21" />
+            <stringArg name="jvmTarget" arg="17" />
             <stringArg name="moduleName" arg="mc-safe-resources" />
             <stringArg name="apiVersion" arg="2.2" />
             <stringArg name="languageVersion" arg="2.2" />
@@ -48,7 +48,7 @@
     <content url="file://$MODULE_DIR$/../../../mc-safe-resources/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../mc-safe-resources/src/main/kotlin" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="corretto-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Gradle: gradle-api-9.2.1.jar">
