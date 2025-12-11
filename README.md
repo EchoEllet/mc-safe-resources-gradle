@@ -68,7 +68,7 @@ tasks.compileJava.dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys)
 </details>
 
 > [!NOTE]
-> The output package may be specified as required (**default** is `"${project.group}.generated"`):
+> The output package may be specified as required (**default** is `"${project.group}.${modId}.generated"`):
 >
 > ```kotlin
 > mcSafeResources {
