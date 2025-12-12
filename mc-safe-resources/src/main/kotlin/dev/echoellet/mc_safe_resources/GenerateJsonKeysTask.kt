@@ -4,9 +4,11 @@ import com.google.gson.JsonParser
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.SkipWhenEmpty
 import org.gradle.api.tasks.TaskAction
@@ -35,6 +37,33 @@ abstract class GenerateJsonKeysTask : DefaultTask() {
 
     @get:Input
     abstract val keyNamespaceToStrip: Property<String>
+
+    /**
+     * Applies an optional string replacement to each raw JSON string before it is
+     * written into the generated source file.
+     *
+     * For example, given this JSON entry:
+     *
+     * ```json
+     * "key.${mod_id}.example.5": "Example Key 5"
+     * ```
+     *
+     * The generated code will contain:
+     *
+     * ```java
+     * public static final String KEY_EXAMPLE_5 = "key.${mod_id}.example.5";
+     * ```
+     *
+     * If you want to replace the holders (such as `${mod_id}`) before writing
+     * the constant value:
+     *
+     * ```kotlin
+     * keyStringReplacements.set(mapOf($$"${modId}" to modId))
+     * ```
+     */
+    @get:Input
+    @get:Optional
+    abstract val keyStringReplacements: MapProperty<String, String>
 
     @get:Input
     abstract val useJetBrainsAnnotations: Property<Boolean>
@@ -187,10 +216,13 @@ abstract class GenerateJsonKeysTask : DefaultTask() {
                 constName = "_$constName"
             }
 
+            val transformedKey = keyStringReplacements.orNull?.let { applyReplacements(jsonKey, it) } ?: jsonKey
+
             // Escape $ to prevent Kotlin string interpolation; keep the literal JSON key
+            // to prevent compiler errors.
             val fieldName = if (outputLanguage.get() == OutputLanguage.KOTLIN) {
-                jsonKey.replace("$", "\\$")
-            } else jsonKey
+                transformedKey.replace("$", "\\$")
+            } else transformedKey
 
             constName to fieldName
         }
@@ -198,5 +230,13 @@ abstract class GenerateJsonKeysTask : DefaultTask() {
 
     private fun getOutputFileName(outputClassName: String, outputLanguage: OutputLanguage): String {
         return "${outputClassName}.${outputLanguage.fileExtension}"
+    }
+
+    private fun applyReplacements(s: String, replacements: Map<String, String>): String {
+        var result = s
+        for ((key, value) in replacements) {
+            result = result.replace(key, value)
+        }
+        return result
     }
 }

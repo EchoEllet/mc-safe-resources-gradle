@@ -32,6 +32,7 @@ abstract class McSafeResourcesPlugin : Plugin<Project> {
                 outputPackage.set(extension.outputPackage.orElse(getDefaultOutputPackage(project, extension.namespace.get())))
                 keyNamespaceToStrip.set(extension.namespace)
                 useJetBrainsAnnotations.set(extension.useJetBrainsAnnotations)
+                keyStringReplacements.set(extension.keyStringReplacements)
             }
         }
     }

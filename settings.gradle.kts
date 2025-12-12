@@ -2,7 +2,7 @@ rootProject.name = "mc-safe-resources"
 
 pluginManagement {
     repositories {
-//        maven { url = uri("./mc-safe-resources/build/local-repo") }
+        maven { url = uri("./mc-safe-resources/build/local-repo") }
         gradlePluginPortal()
     }
 }
