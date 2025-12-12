@@ -26,7 +26,7 @@ The plugin is [available on Gradle portal](https://plugins.gradle.org/plugin/dev
 ```kotlin
 plugins {
     // ...
-    id("dev.echoellet.mc-safe-resources") version("0.0.1")
+    id("dev.echoellet.mc-safe-resources") version("0.0.2")
 }
 
 mcSafeResources {
@@ -34,8 +34,8 @@ mcSafeResources {
 }
 
 java.sourceSets.main.get().java.srcDirs(
-  tasks.generateLangKeys.map { it.outputs.files.singleFile },
-  tasks.generateSoundKeys.map { it.outputs.files.singleFile }
+    tasks.generateLangKeys.map { it.outputs.files.singleFile },
+    tasks.generateSoundKeys.map { it.outputs.files.singleFile }
 )
 
 tasks.compileJava { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
@@ -50,11 +50,11 @@ tasks.compileJava { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 ```groovy
 plugins {
     // ...
-    id("dev.echoellet.mc-safe-resources") version("0.0.1")
+    id("dev.echoellet.mc-safe-resources") version("0.0.2")
 }
 
 mcSafeResources {
-  namespace.set(mod_id)
+    namespace.set(mod_id)
 }
 
 java.sourceSets.main.java.srcDirs(
@@ -82,15 +82,15 @@ tasks.compileJava.dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys)
 
 ```kotlin
 kotlin.sourceSets.main.get().kotlin.srcDirs(
-  tasks.generateLangKeys.map { it.outputs.files.singleFile },
-  tasks.generateSoundKeys.map { it.outputs.files.singleFile }
+    tasks.generateLangKeys.map { it.outputs.files.singleFile },
+    tasks.generateSoundKeys.map { it.outputs.files.singleFile }
 )
 
 tasks.compileKotlin { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 
 mcSafeResources {
-  namespace.set(mod_id)
-  outputLanguage.set(KOTLIN)
+    namespace.set(mod_id)
+    outputLanguage.set(KOTLIN)
 }
 ```
 
@@ -144,6 +144,53 @@ Component.translatable(LangKeys.ITEM_EXAMPLE);
 - Works independently of any mod loader, toolchain, plugin, or Minecraft Java dependency
 - Supports the **Kotlin programming language**
 - Opinionated and simple with minimal configuration, yet flexible enough when needed
+
+## Replace placeholders
+
+Some mods with advanced Gradle setups choose not to hardcode the mod ID in their
+JSON keys, for example:
+
+```json
+{
+  "key.${modId}.example": "Example Key"
+}
+```
+
+Minecraft still needs `${modId}` to be replaced in the final JAR, and the usual
+way to do that is the built-in Gradle's `processResources` task:
+
+```kotlin
+tasks.withType<ProcessResources> {
+    val replaceProperties = mapOf("modId" to modId)
+    inputs.properties(replaceProperties)
+    filesMatching(listOf("**/*.json")) { expand(properties) }
+}
+```
+
+This replaces the placeholder inside the JAR, but since this plugin reads the
+JSON file from the source, the `${modId}` placeholder stays untouched in the
+generated object:
+
+```java
+public static final String KEY_EXAMPLE = "key.${modId}.example";
+```
+
+To fix that, you can also process the generated constant values:
+
+```
+mcSafeResources {
+    // ...
+    keyStringReplacements.set(mapOf(
+        $$"${modId}" to modId,
+    ))
+}
+```
+
+Which results in JSON keys that match the one in-game:
+
+```java
+public static final String KEY_EXAMPLE = "key.my_mod_id.example";
+```
 
 ## Advanced Setup
 

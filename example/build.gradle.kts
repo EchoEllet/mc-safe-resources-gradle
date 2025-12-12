@@ -13,7 +13,7 @@ dependencies {
 }
 
 group = "org.example"
-val exampleModId = "my_mod_id"
+val modId = "my_mod_id"
 
 kotlin.sourceSets.main.get().kotlin.srcDirs(
     tasks.generateLangKeys.map { it.outputs.files.singleFile },
@@ -23,6 +23,18 @@ kotlin.sourceSets.main.get().kotlin.srcDirs(
 tasks.compileKotlin { dependsOn(tasks.generateLangKeys, tasks.generateSoundKeys) }
 
 mcSafeResources {
-    namespace.set(exampleModId)
+    namespace.set(modId)
     outputLanguage.set(KOTLIN)
+    keyStringReplacements.set(mapOf(
+        $$"${modId}" to modId,
+    ))
+}
+
+tasks.withType<ProcessResources> {
+    val replaceProperties = mapOf(
+        "modId" to modId,
+        "specialKey" to $$"${specialKey}",
+    )
+    inputs.properties(replaceProperties)
+    filesMatching(listOf("**/*.json")) { expand(replaceProperties) }
 }

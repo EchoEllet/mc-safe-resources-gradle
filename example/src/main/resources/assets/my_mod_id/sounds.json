@@ -1,5 +1,5 @@
 {
-  "entity.shifu.ambient": {
+  "example.${modId}.entity.shifu.ambient": {
     "subtitle": "subtitle.${modId}.shifu.ambient",
     "category": "entity",
     "sounds": [
@@ -14,7 +14,7 @@
       "${modId}:shifu/ambient/9"
     ]
   },
-  "entity.bandit.male.ambient": {
+  "dragonfist_legacy.entity.bandit.male.ambient": {
     "subtitle": "subtitle.${modId}.bandit.ambient",
     "category": "entity",
     "sounds": [

@@ -1,7 +1,9 @@
 package dev.echoellet.mc_safe_resources
 
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.mapProperty
 import javax.inject.Inject
 
 abstract class McSafeResourcesExtension @Inject constructor(objects: ObjectFactory) {
@@ -26,4 +28,9 @@ abstract class McSafeResourcesExtension @Inject constructor(objects: ObjectFacto
     val useJetBrainsAnnotations: Property<Boolean> = objects
         .property(Boolean::class.java)
         .convention(true)
+
+    /**
+     * @see [GenerateJsonKeysTask.keyStringReplacements]
+     */
+    val keyStringReplacements: MapProperty<String, String> = objects.mapProperty<String, String>()
 }
